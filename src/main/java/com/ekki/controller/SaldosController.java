@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,13 +51,66 @@ public class SaldosController {
 		return saldo;
 	}
 	
-//
-//	@PostMapping(value = "/saldos/create")
-//	public Customer postCustomer(@RequestBody Customer customer) {
-//
-//		Customer _customer = saldoRepository.save(new Customer(customer.getName(), customer.getAge()));
-//		return _customer;
+//	@PutMapping(value = "/saldos/update")
+//	public Saldos atualizaSaldo(@RequestBody Saldos saldo) {
+//		//parametros necessarios {idSolicitante, valor, idDestinatario}
+////verificar se usuario tem saldo necessario
+//		//se nao tem, retorna mensagem de erro que saldo e insuficiente
+//		// se sim segue
+//		//subtrai esse saldo do usuario que esta transferindo
+//		//adiciona o saldo ao usuario destinatario da transferencia
+//		Saldos _saldos = saldoRepository.save(new Saldos(saldo.getSaldo(), saldo.getIdusuario()));
+//		return _saldos;
 //	}
+	
+	@PutMapping(value = "/saldos/update")
+	public Saldos atualizaSaldo(@RequestBody Saldos saldo) {
+		Saldos _saldos = saldoRepository.save(new Saldos(saldo.getSaldo(), saldo.getIdusuario()));
+		return _saldos;
+	}
+	
+	@PostMapping(value = "/saldos/create")
+	public Saldos salvaSaldo(@RequestBody Saldos saldo) {
+
+		Saldos _saldos = saldoRepository.save(new Saldos(saldo.getSaldo(), saldo.getIdusuario()));
+		return _saldos;
+	}
+	
+	
+	
+	@PutMapping("/saldos/update/{id}")
+	public ResponseEntity<Saldos> updateCustomer(
+			@PathVariable("id") int id, 
+			@RequestBody Saldos saldo) {
+		System.out.println("Update Saldo with idusuario = " + id + "...");
+
+		Optional<Saldos> saldoData = saldoRepository.findById(id);
+
+		if (saldoData.isPresent()) {
+			Saldos _saldo = saldoData.get();
+			_saldo.setSaldo(saldo.getSaldo());
+			return new ResponseEntity<>(saldoRepository.save(_saldo), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	
+//	@PutMapping("/saldo/update/{id}")
+//	public ResponseEntity<Saldos> atualizar(@PathVariable Long id,
+//			@Valid @RequestBody Saldos saldo) {
+//		Optional<Saldos> existente = saldoRepository.findById(id);
+//		
+//		if (existente == null) {
+//			return ResponseEntity.notFound().build();
+//		}
+//		BeanUtils.copyProperties(saldo, existente, "id");
+//			
+//		existente = saldoRepository.save(existente);
+//		
+//		return ResponseEntity.ok(existente);
+//	}
+	
 //
 //	@DeleteMapping("/saldos/{id}")
 //	public ResponseEntity<String> deleteCustomer(@PathVariable("id") long id) {
@@ -81,20 +137,5 @@ public class SaldosController {
 //		return customers;
 //	}
 //
-//	@PutMapping("/saldos/{id}")
-//	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
-//		System.out.println("Update Customer with ID = " + id + "...");
-//
-//		Optional<Customer> customerData = saldoRepository.findById(id);
-//
-//		if (customerData.isPresent()) {
-//			Customer _customer = customerData.get();
-//			_customer.setName(customer.getName());
-//			_customer.setAge(customer.getAge());
-//			_customer.setActive(customer.isActive());
-//			return new ResponseEntity<>(saldoRepository.save(_customer), HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//	}
+
 }
