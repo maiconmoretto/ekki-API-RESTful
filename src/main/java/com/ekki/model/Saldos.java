@@ -14,7 +14,7 @@ public class Saldos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_saldo")
-	private int id;
+	private Long id;
 
 	@Column(name = "saldo")
 	private int saldo;
@@ -22,11 +22,11 @@ public class Saldos {
 	@Column(name = "id_usuario")
 	private int idusuario;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

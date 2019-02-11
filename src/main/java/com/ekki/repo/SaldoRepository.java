@@ -12,4 +12,5 @@ import com.ekki.model.Saldos;
 public interface SaldoRepository extends CrudRepository<Saldos, Long> {
 	List<Saldos> findByIdusuario(int idusuario);
 	Optional<Saldos> findById(int id);
+	
 }

@@ -41,47 +41,28 @@ public class SaldosController {
 		return saldos;
 	}
 	
-	
-
-
 	@GetMapping(value = "/saldos/{idusuario}")
 	public List<Saldos> listaPorIdUsuario(@PathVariable int idusuario) {
-
 		List<Saldos> saldo = saldoRepository.findByIdusuario(idusuario);
 		return saldo;
 	}
 	
-//	@PutMapping(value = "/saldos/update")
-//	public Saldos atualizaSaldo(@RequestBody Saldos saldo) {
-//		//parametros necessarios {idSolicitante, valor, idDestinatario}
-////verificar se usuario tem saldo necessario
-//		//se nao tem, retorna mensagem de erro que saldo e insuficiente
-//		// se sim segue
-//		//subtrai esse saldo do usuario que esta transferindo
-//		//adiciona o saldo ao usuario destinatario da transferencia
-//		Saldos _saldos = saldoRepository.save(new Saldos(saldo.getSaldo(), saldo.getIdusuario()));
-//		return _saldos;
-//	}
-	
-	@PutMapping(value = "/saldos/update")
-	public Saldos atualizaSaldo(@RequestBody Saldos saldo) {
-		Saldos _saldos = saldoRepository.save(new Saldos(saldo.getSaldo(), saldo.getIdusuario()));
-		return _saldos;
-	}
-	
 	@PostMapping(value = "/saldos/create")
 	public Saldos salvaSaldo(@RequestBody Saldos saldo) {
-
 		Saldos _saldos = saldoRepository.save(new Saldos(saldo.getSaldo(), saldo.getIdusuario()));
 		return _saldos;
 	}
 	
-	
-	
 	@PutMapping("/saldos/update/{id}")
-	public ResponseEntity<Saldos> updateCustomer(
-			@PathVariable("id") int id, 
+	public ResponseEntity<Saldos> updateSaldo(
+			@PathVariable("id") Long id, 
 			@RequestBody Saldos saldo) {
+		//parametros necessarios {idSolicitante, valor, idDestinatario}
+	////verificar se usuario tem saldo necessario
+//			//se nao tem, retorna mensagem de erro que saldo e insuficiente
+//			// se sim segue
+//			//subtrai esse saldo do usuario que esta transferindo
+//			//adiciona o saldo ao usuario destinatario da transferencia
 		System.out.println("Update Saldo with idusuario = " + id + "...");
 
 		Optional<Saldos> saldoData = saldoRepository.findById(id);
@@ -95,47 +76,11 @@ public class SaldosController {
 		}
 	}
 	
-	
-//	@PutMapping("/saldo/update/{id}")
-//	public ResponseEntity<Saldos> atualizar(@PathVariable Long id,
-//			@Valid @RequestBody Saldos saldo) {
-//		Optional<Saldos> existente = saldoRepository.findById(id);
-//		
-//		if (existente == null) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		BeanUtils.copyProperties(saldo, existente, "id");
-//			
-//		existente = saldoRepository.save(existente);
-//		
-//		return ResponseEntity.ok(existente);
-//	}
-	
-//
-//	@DeleteMapping("/saldos/{id}")
-//	public ResponseEntity<String> deleteCustomer(@PathVariable("id") long id) {
-//		System.out.println("Delete Customer with ID = " + id + "...");
-//
-//		saldoRepository.deleteById(id);
-//
-//		return new ResponseEntity<>("Customer has been deleted!", HttpStatus.OK);
-//	}
-//
-//	@DeleteMapping("/saldos/delete")
-//	public ResponseEntity<String> deleteAllCustomers() {
-//		System.out.println("Delete All Customers...");
-//
-//		saldoRepository.deleteAll();
-//
-//		return new ResponseEntity<>("All customers have been deleted!", HttpStatus.OK);
-//	}
-//
-//	@GetMapping(value = "saldos/age/{age}")
-//	public List<Customer> findByAge(@PathVariable int age) {
-//
-//		List<Customer> customers = saldoRepository.findByAge(age);
-//		return customers;
-//	}
-//
+	@DeleteMapping("/saldos/delete/{id}")
+	public ResponseEntity<String> deleteSaldo(@PathVariable("id") long id) {
+		saldoRepository.deleteById(id);
+
+		return new ResponseEntity<>("Saldo has been deleted!", HttpStatus.OK);
+	}
 
 }
