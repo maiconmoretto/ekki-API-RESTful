@@ -52,7 +52,7 @@ public class SaldoController {
 	}
 	
 	@PutMapping("/saldos/update/{id}")
-	public ResponseEntity<Saldo> aualizaSaldo(
+	public ResponseEntity<Saldo> atualizaSaldo(
 			@PathVariable("id") Long id, 
 			@RequestBody Saldo saldo) {
 		//parametros necessarios {idSolicitante, valor, idDestinatario}

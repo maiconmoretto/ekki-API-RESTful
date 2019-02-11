@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ekki.model.Saldo;
 import com.ekki.model.Usuario;
 import com.ekki.repo.UsuarioRepository;
 
@@ -39,40 +40,50 @@ public class UsuarioController {
 		return usuario;
 	}
 	
-	@GetMapping(value = "/usuarios/{idusuario}")
-	public List<Usuario> listaPorIdUsuario(@PathVariable int idusuario) {
-		List<Usuario> usuario = usuarioRepository.findById(idusuario);
+	@GetMapping(value = "/usuarios/{id}")
+	public List<Usuario> listaPorIdUsuario(@PathVariable long id) {
+		List<Usuario> usuario = usuarioRepository.findById(id);
 		return usuario;
 	}
-//	
-//	@PostMapping(value = "/saldos/create")
-//	public Saldo salvaSaldo(@RequestBody Saldo saldo) {
-//		Saldo _saldos = saldoRepository.save(new Saldo(saldo.getSaldo(), saldo.getIdusuario()));
-//		return _saldos;
-//	}
-//	
-//	@PutMapping("/saldos/update/{id}")
-//	public ResponseEntity<Saldo> updateSaldo(
-//			@PathVariable("id") Long id, 
-//			@RequestBody Saldo saldo) {
-//		System.out.println("Update Saldo with idusuario = " + id + "...");
-//
-//		Optional<Saldo> saldoData = saldoRepository.findById(id);
-//
-//		if (saldoData.isPresent()) {
-//			Saldo _saldo = saldoData.get();
-//			_saldo.setSaldo(saldo.getSaldo());
-//			return new ResponseEntity<>(saldoRepository.save(_saldo), HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//	}
-//	
-//	@DeleteMapping("/saldos/delete/{id}")
-//	public ResponseEntity<String> deleteSaldo(@PathVariable("id") long id) {
-//		saldoRepository.deleteById(id);
-//
-//		return new ResponseEntity<>("Saldo has been deleted!", HttpStatus.OK);
-//	}
+
+	@PostMapping(value = "/usuarios/create")
+	public Usuario salvaUsuario(@RequestBody Usuario usuario) {
+	
+		Usuario _usuarios = usuarioRepository.save(
+			new Usuario(
+					usuario.getNome(),
+					usuario.getSenha(),
+					usuario.getLogin(),
+					usuario.getIdConta()
+			)
+		);
+		return _usuarios;
+	}
+
+
+	@PutMapping("/usuarios/update/{id}")
+	public ResponseEntity<Usuario> atualizaUsuario(
+			@PathVariable("id") Long id, 
+			@RequestBody Usuario usuario) {
+		Optional<Usuario> usuarioData = usuarioRepository.findById(id);
+
+		if (usuarioData.isPresent()) {
+			Usuario _usuario = usuarioData.get();
+			_usuario.setIdConta(usuario.getIdConta());
+			_usuario.setLogin(usuario.getLogin());
+			_usuario.setNome(usuario.getNome());
+			_usuario.setSenha(usuario.getSenha());
+			return new ResponseEntity<>(usuarioRepository.save(_usuario), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@DeleteMapping("/usuarios/delete/{id}")
+	public ResponseEntity<String> deleteUsuario(@PathVariable("id") long id) {
+		usuarioRepository.deleteById(id);
+
+		return new ResponseEntity<>("Usuario has been deleted!", HttpStatus.OK);
+	}
 
 }

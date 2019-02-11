@@ -67,12 +67,12 @@ public class Usuario {
 	public void setIdConta(int idConta) {
 		this.idConta = idConta;
 	}
-
+	
 	public Usuario() {
+		
 	}
 
 	public Usuario(
-			Long id,
 			String nome,
 			String senha,
 			String login,
@@ -83,10 +83,5 @@ public class Usuario {
 		this.login = login;
 		this.nome = nome;
 		this.senha = senha;
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + "]";
 	}
 }

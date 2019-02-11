@@ -46,18 +46,8 @@ public class Saldo {
 		this.idusuario = idusuario;
 	}
 
-	public Saldo() {
-	}
-
 	public Saldo(int saldo, int idusuario) {
 		this.idusuario = idusuario;
 		this.saldo = saldo;
-	}
-
-	
-
-	@Override
-	public String toString() {
-		return "Saldo [idusuario=" + idusuario + ", saldo=" + saldo + "]";
 	}
 }

@@ -9,6 +9,5 @@ import com.ekki.model.Usuario;
 
 
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
-	List<Usuario> findById(int idusuario);
-	
+	List<Usuario> findById(long id);
 }
