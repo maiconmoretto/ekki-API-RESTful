@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "saldo")
-public class Saldos {
+public class Saldo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,10 +46,10 @@ public class Saldos {
 		this.idusuario = idusuario;
 	}
 
-	public Saldos() {
+	public Saldo() {
 	}
 
-	public Saldos(int saldo, int idusuario) {
+	public Saldo(int saldo, int idusuario) {
 		this.idusuario = idusuario;
 		this.saldo = saldo;
 	}
@@ -58,6 +58,6 @@ public class Saldos {
 
 	@Override
 	public String toString() {
-		return "Customer [idusuario=" + idusuario + ", saldo=" + saldo + "]";
+		return "Saldo [idusuario=" + idusuario + ", saldo=" + saldo + "]";
 	}
 }
