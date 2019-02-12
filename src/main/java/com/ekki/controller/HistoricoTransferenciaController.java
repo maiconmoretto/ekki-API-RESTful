@@ -54,6 +54,4 @@ public class HistoricoTransferenciaController {
 				historicoTransferencia.getValor()));
 		return _historicoTransferencia;
 	}
-
-
 }
