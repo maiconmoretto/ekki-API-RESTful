@@ -17,7 +17,7 @@ public class Saldo {
 	private Long id;
 
 	@Column(name = "saldo")
-	private int saldo;
+	private double saldo;
 
 	@Column(name = "id_usuario")
 	private int idusuario;
@@ -30,11 +30,11 @@ public class Saldo {
 		this.id = id;
 	}
 
-	public int getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(int saldo) {
+	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 
@@ -45,8 +45,12 @@ public class Saldo {
 	public void setIdusuario(int idusuario) {
 		this.idusuario = idusuario;
 	}
+	
+	public Saldo() {
+		
+	}
 
-	public Saldo(int saldo, int idusuario) {
+	public Saldo(double saldo, int idusuario) {
 		this.idusuario = idusuario;
 		this.saldo = saldo;
 	}
