@@ -44,4 +44,11 @@ public class ContaController {
 		List<Conta> conta = contaRepository.findByIdUsuario(idUsuario);
 		return conta;
 	}
+	
+	@GetMapping(value = "/conta/dados/{numeroConta}")
+	public List<Conta> listaDadosContaPorNumeroConta(@PathVariable int numeroConta) {
+		List<Conta> conta = contaRepository.findByNumeroConta(numeroConta);
+		return conta;
+	}
+	
 }
