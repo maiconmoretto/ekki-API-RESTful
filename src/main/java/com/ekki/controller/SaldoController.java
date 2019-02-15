@@ -51,19 +51,12 @@ public class SaldoController {
 		return _saldos;
 	}
 	
-	@PutMapping("/saldos/update/{id}")
+	@PutMapping("/saldos/update/{idusuario}")
 	public ResponseEntity<Saldo> atualizaSaldo(
-			@PathVariable("id") Long id, 
+			@PathVariable("idusuario") int idusuario, 
 			@RequestBody Saldo saldo) {
-		//parametros necessarios {idSolicitante, valor, idDestinatario}
-	////verificar se usuario tem saldo necessario
-//			//se nao tem, retorna mensagem de erro que saldo e insuficiente
-//			// se sim segue
-//			//subtrai esse saldo do usuario que esta transferindo
-//			//adiciona o saldo ao usuario destinatario da transferencia
-
-		Optional<Saldo> saldoData = saldoRepository.findById(id);
-
+		List<Saldo> saldoUsuario = saldoRepository.findByIdusuario(idusuario);
+		Optional<Saldo> saldoData = saldoUsuario.stream().findFirst();
 		if (saldoData.isPresent()) {
 			Saldo _saldo = saldoData.get();
 			_saldo.setSaldo(saldo.getSaldo());
