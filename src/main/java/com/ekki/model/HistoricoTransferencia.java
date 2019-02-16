@@ -98,7 +98,7 @@ public class HistoricoTransferencia {
 	public HistoricoTransferencia() {
 		
 	}
-	
+
 	public HistoricoTransferencia(
 			int idUsuario,
 			int idDestinatario,
@@ -110,5 +110,6 @@ public class HistoricoTransferencia {
 		this.valor = valor;
 		this.nomeDestinatario = nomeDestinatario;
 		this.numeroConta = numeroConta;
+		
 	}
 }
