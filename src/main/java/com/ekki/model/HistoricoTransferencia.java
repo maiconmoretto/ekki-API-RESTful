@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "historico_transferencia")
@@ -23,12 +25,18 @@ public class HistoricoTransferencia {
 	
 	@Column(name = "id_destinatario")
 	private int idDestinatario;
-
+	
 	@Column(name = "data_cadastro")
-	private Date dataCadastro;
+	private java.sql.Timestamp dataCadastro;
 
 	@Column(name = "valor")
 	private double valor;
+	
+	@Column(name = "nome_destinatario")
+	private String nomeDestinatario;
+	
+	@Column(name = "numero_conta")
+	private String numeroConta;
 	
 	public Long getId() {
 		return id;
@@ -62,15 +70,31 @@ public class HistoricoTransferencia {
 		this.valor = valor;
 	}
 
-	public void setDataCadastro(Date dataCadastro ) {
+	@Temporal(TemporalType.TIMESTAMP)
+	public java.sql.Timestamp getDataCadastro() {
+		return dataCadastro;
+	}
+	
+	public void setDataCadastro(java.sql.Timestamp dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	
-	public Date getDataCadastro() {
-		return this.dataCadastro;
+
+	public String getNomeDestinatario() {
+		return nomeDestinatario;
 	}
-	
-	
+
+	public void setNomeDestinatario(String nomeDestinatario) {
+		this.nomeDestinatario = nomeDestinatario;
+	}
+
+	public String getNumeroConta() {
+		return numeroConta;
+	}
+
+	public void setNumeroConta(String numeroConta) {
+		this.numeroConta = numeroConta;
+	}
+
 	public HistoricoTransferencia() {
 		
 	}
@@ -78,9 +102,13 @@ public class HistoricoTransferencia {
 	public HistoricoTransferencia(
 			int idUsuario,
 			int idDestinatario,
-			double valor) {
+			double valor,
+			String nomeDestinatario,
+			String numeroConta) {
 		this.idUsuario = idUsuario;
 		this.idDestinatario = idDestinatario;
 		this.valor = valor;
+		this.nomeDestinatario = nomeDestinatario;
+		this.numeroConta = numeroConta;
 	}
 }
