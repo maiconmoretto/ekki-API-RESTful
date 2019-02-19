@@ -50,7 +50,9 @@ public class ContatoController {
 		Contato _contato = contatoRepository.save(
 			new Contato(
 				contato.getCadastradoPor(),
-				contato.getIdUsuarioContato()
+				contato.getIdUsuarioContato(),
+				contato.getNomeContato(),
+				contato.getNumeroConta()
 			)
 		);
 		return _contato;
@@ -65,7 +67,8 @@ public class ContatoController {
 			Contato _contato = contatoData.get();
 			_contato.setCadastradoPor(contato.getCadastradoPor());
 			_contato.setIdUsuarioContato(contato.getIdUsuarioContato());
-						
+			_contato.setNomeContato(contato.getNomeContato());
+			_contato.setNumeroConta(contato.getNumeroConta());
 			return new ResponseEntity<>(contatoRepository.save(_contato), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

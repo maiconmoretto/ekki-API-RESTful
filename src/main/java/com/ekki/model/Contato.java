@@ -25,6 +25,27 @@ public class Contato {
 	@Column(name = "id_usuario_contato")
 	private int idUsuarioContato;
 	
+	@Column(name = "nome_contato")
+	private String nomeContato;
+	
+	@Column(name = "numero_conta")
+	private int numeroConta;
+	
+	public int getNumeroConta() {
+		return numeroConta;
+	}
+	
+	public void setNumeroConta(int numeroConta) {
+		this.numeroConta = numeroConta; 
+	}
+	
+	public String getNomeContato() {
+		return nomeContato;
+	}
+
+	public void setNomeContato(String nomeContato) {
+		this.nomeContato = nomeContato;
+	}
 
 	public Long getId() {
 		return id;
@@ -56,9 +77,13 @@ public class Contato {
 	
 	public Contato(
 			int cadastradoPor,
-			int idUsuarioContato
+			int idUsuarioContato,
+			String nomeContato,
+			int numeroConta
 	) {
 		this.cadastradoPor = cadastradoPor;
 		this.idUsuarioContato = idUsuarioContato;
+		this.nomeContato = nomeContato;
+		this.numeroConta = numeroConta;
 	}
 }
