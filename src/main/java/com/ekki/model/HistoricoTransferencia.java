@@ -38,6 +38,17 @@ public class HistoricoTransferencia {
 	@Column(name = "numero_conta")
 	private String numeroConta;
 	
+	@Column(name = "numero_cartao")
+	private String numeroCartao;
+	
+	public String getNumeroCartao() {
+		return numeroCartao;
+	}
+
+	public void setNumeroCartao(String numeroCartao) {
+		this.numeroCartao = numeroCartao;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -104,12 +115,14 @@ public class HistoricoTransferencia {
 			int idDestinatario,
 			double valor,
 			String nomeDestinatario,
-			String numeroConta) {
+			String numeroConta,
+			String numeroCartao) {
 		this.idUsuario = idUsuario;
 		this.idDestinatario = idDestinatario;
 		this.valor = valor;
 		this.nomeDestinatario = nomeDestinatario;
 		this.numeroConta = numeroConta;
+		this.numeroCartao = numeroCartao;
 		
 	}
 }

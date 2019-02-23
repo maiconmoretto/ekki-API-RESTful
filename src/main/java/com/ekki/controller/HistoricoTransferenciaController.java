@@ -53,7 +53,9 @@ public class HistoricoTransferenciaController {
 				historicoTransferencia.getIdDestinatario(),
 				historicoTransferencia.getValor(),
 				historicoTransferencia.getNomeDestinatario(),
-				historicoTransferencia.getNumeroConta()));
+				historicoTransferencia.getNumeroConta(),
+				historicoTransferencia.getNumeroCartao()));
+		
 		return _historicoTransferencia;
 	}
 }
