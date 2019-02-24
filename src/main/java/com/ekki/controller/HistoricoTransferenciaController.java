@@ -58,4 +58,11 @@ public class HistoricoTransferenciaController {
 		
 		return _historicoTransferencia;
 	}
+	
+	@DeleteMapping("/historicoTransferencia/delete/{id}")
+	public ResponseEntity<String> deletaTransferencia(@PathVariable("id") long id) {
+		historicoTransferenciaRepository.deleteById(id);
+
+		return new ResponseEntity<>("Transferencia has been deleted!", HttpStatus.OK);
+	}
 }

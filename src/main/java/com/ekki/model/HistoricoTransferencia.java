@@ -1,5 +1,7 @@
 package com.ekki.model;
 
+
+
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -10,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.ekki.AbstractTimestampEntity;
 
 @Entity
 @Table(name = "historico_transferencia")
@@ -25,9 +31,6 @@ public class HistoricoTransferencia {
 	
 	@Column(name = "id_destinatario")
 	private int idDestinatario;
-	
-	@Column(name = "data_cadastro")
-	private java.sql.Timestamp dataCadastro;
 
 	@Column(name = "valor")
 	private double valor;
@@ -41,6 +44,21 @@ public class HistoricoTransferencia {
 	@Column(name = "numero_cartao")
 	private String numeroCartao;
 	
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_cadastro")
+	private java.util.Date dataCadastro;
+
+	
+	
+	public java.util.Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(java.util.Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
 	public String getNumeroCartao() {
 		return numeroCartao;
 	}
@@ -81,14 +99,7 @@ public class HistoricoTransferencia {
 		this.valor = valor;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	public java.sql.Timestamp getDataCadastro() {
-		return dataCadastro;
-	}
 	
-	public void setDataCadastro(java.sql.Timestamp dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
 
 	public String getNomeDestinatario() {
 		return nomeDestinatario;
