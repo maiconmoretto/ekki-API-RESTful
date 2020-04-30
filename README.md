@@ -1,9 +1,10 @@
-# projeto-ekki-API-RESTful
-API do projeto Ekki em java.
+# ekki-API-RESTful
 
-Versão do spring boot:
-Spring Tool Suite 4 
+API of the Ekki project in java.
+
+Spring boot version:
+Spring Tool Suite 4
 
 Version: 4.1.1.RELEASE
 
-Utilizado PostMan para testar as apis
+Used PostMan to test apis
